@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.4",
+    "jest": "^22.4.4",
+    "parcel-bundler": "^1.8.1"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build --no-source-maps index.html",
+    "deploy": "npm run build && surge --domain hunter-w5d2.surge.sh dist/",
+    "test": "jest"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "jquery": "^3.3.1",
+    "mathjs": "^4.3.0",
+    "shoelace-css": "^1.0.0-beta24",
+    "superagent": "^3.8.3"
+  }
+}
