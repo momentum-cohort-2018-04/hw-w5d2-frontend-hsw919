@@ -7,6 +7,29 @@ $(window).on('load', () => {
     .get('http://fantasy-currency.glitch.me/rates')
     .then(response => {
       console.log(response)
+      $('#form').on('submit', (event) => {
+        event.preventDefault()
+        const number = $('#from-number').val()
+
+        const fromCode = $('#from-code').val()
+        const fromCodeSplit = fromCode.split(' ')
+
+        const toCode = $('#to-code').val()
+        const toCodeSplit = toCode.split(' ')
+
+        const bank = new Bank(response.body.rates)
+        const money = new Money(number, fromCodeSplit[0])
+
+        const subtotal = bank.convert(money, toCodeSplit[0])
+        const num = subtotal._amount / EXPONENT
+        $('.subtotal').html(num)
+
+        const total = math.round((1 - 0.02) * num, 2)
+        $('.total').html(`${total} ${toCodeSplit[0]}`)
+
+        const fee = math.round(num % total, 2)
+        $('.fee').html(`- fee of ${fee}`)
+      })
     })
 })
 
@@ -54,15 +77,6 @@ export class Bank {
     this.rates = rates
   }
 
-  // convertToUSD (money) {
-  //   for (var rate of this.rates) {
-  //     if (rate.abbr === money.currencyCode) {
-  //       break
-  //     }
-  //   }
-  //   return new Money(money.getAmount() * rate.rateInUSD, 'USD')
-  // }
-
   convert (money, currencyCode) {
     if (money.currencyCode === currencyCode) {
       return money
@@ -72,7 +86,7 @@ export class Bank {
           break
         }
       }
-      return new Money(money.getAmount() * rate.rateInUSD, currencyCode)
+      return new Money(math.round(money.getAmount() * rate.rateInUSD, 2), currencyCode)
     } else if (money.currencyCode === 'USD') {
       for (rate of this.rates) {
         if (rate.abbr === currencyCode) {

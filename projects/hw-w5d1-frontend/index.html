@@ -10,6 +10,39 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>hunter</h1>
+  <div class="container">
+    <form id="form">
+      <h1>converting from:</h1>
+      <input type="text" id="from-number">
+      <select id="from-code">
+        <option>USD (US Dollar)</option>
+        <option>NLN (Narnia Lion)</option>
+        <option>GCA (Gondor Castar)</option>
+        <option>WGA (Wizard Galleon)</option>
+        <option>FRC (Forgotten Realms Copper)</option>
+        <option>AMD (Ankh-Morpork Dollar)</option>
+        <option>FPB (Flanian Pobble Bead)</option>
+        <option>VTH (Vampire Teeth)</option>
+      </select>
+
+      <h1>To:</h1>
+
+      <select id="to-code">
+        <option>USD (US Dollar)</option>
+        <option>NLN (Narnia Lion)</option>
+        <option>GCA (Gondor Castar)</option>
+        <option>WGA (Wizard Galleon)</option>
+        <option>FRC (Forgotten Realms Copper)</option>
+        <option>AMD (Ankh-Morpork Dollar)</option>
+        <option>FPB (Flanian Pobble Bead)</option>
+        <option>VTH (Vampire Teeth)</option>
+      </select>
+      <button type="submit">Convert</button>
+    </form>
+
+    <div class="subtotal"></div>
+    <div class="fee"></div>
+    <div class="total"></div>
+  </div>
 </body>
 </html>
