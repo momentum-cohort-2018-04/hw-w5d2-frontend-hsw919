@@ -11,24 +11,37 @@ $(window).on('load', () => {
         event.preventDefault()
         const number = $('#from-number').val()
 
-        const fromCode = $('#from-code').val()
-        const fromCodeSplit = fromCode.split(' ')
+        if (number === '' || isNaN(number) === true || number === '0') {
+          console.log('is empty or nan')
+          $('.danger').html('You must enter a valid number that is greater than 0')
+          $('.total-contain').html('')
+        } else {
+          $('.danger').html('')
+          const fromCode = $('#from-code').val()
+          const fromCodeSplit = fromCode.split(' ')
 
-        const toCode = $('#to-code').val()
-        const toCodeSplit = toCode.split(' ')
+          const toCode = $('#to-code').val()
+          const toCodeSplit = toCode.split(' ')
 
-        const bank = new Bank(response.body.rates)
-        const money = new Money(number, fromCodeSplit[0])
+          const bank = new Bank(response.body.rates)
+          const money = new Money(number, fromCodeSplit[0])
 
-        const subtotal = bank.convert(money, toCodeSplit[0])
-        const num = subtotal._amount / EXPONENT
-        $('.subtotal').html(num)
+          const subtotal = bank.convert(money, toCodeSplit[0])
+          const num = subtotal._amount / EXPONENT
+          // $('.subtotal').html(`Subtotal: ${num}`)
 
-        const total = math.round((1 - 0.02) * num, 2)
-        $('.total').html(`${total} ${toCodeSplit[0]}`)
+          const total = math.round((1 - 0.02) * num, 2)
+          // $('.total').html(`Total: ${total} ${toCodeSplit[0]}`)
 
-        const fee = math.round(num % total, 2)
-        $('.fee').html(`- fee of ${fee}`)
+          const fee = math.round(num % total, 2)
+          // $('.fee').html(`Tax: ${fee}`)
+
+          $('.total-contain').html(`
+          <div class="subtotal">Subtotal: ${num}</div>
+          <div class="fee">Tax: ${fee}</div>
+          <div class="total">Total: ${total} ${toCodeSplit[0]}</div>
+          `)
+        }
       })
     })
 })
