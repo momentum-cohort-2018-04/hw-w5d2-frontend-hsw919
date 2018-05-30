@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="./node_modules/shoelace-css/dist/shoelace.css">
+  <link rel="stylesheet" href="style.scss">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">Currency Exchange</h1>
+  </header>
+  <div class="container">
+    <form id="form">
+      <h2>Converting from:</h2>
+      <input type="text" id="from-number" placeholder="Enter an amount">
+      <div class="danger text-danger"></div>
+      <select id="from-code">
+        <option>USD (US Dollar)</option>
+        <option>NLN (Narnia Lion)</option>
+        <option>GCA (Gondor Castar)</option>
+        <option>WGA (Wizard Galleon)</option>
+        <option>FRC (Forgotten Realms Copper)</option>
+        <option>AMD (Ankh-Morpork Dollar)</option>
+        <option>FPB (Flanian Pobble Bead)</option>
+        <option>VTH (Vampire Teeth)</option>
+      </select>
+
+      <div class="arrow">
+        <i class="fas fa-arrows-alt-v fa-9x"></i>
+      </div>
+
+      <h2>To:</h2>
+      <select id="to-code">
+        <option>USD (US Dollar)</option>
+        <option>NLN (Narnia Lion)</option>
+        <option>GCA (Gondor Castar)</option>
+        <option>WGA (Wizard Galleon)</option>
+        <option>FRC (Forgotten Realms Copper)</option>
+        <option>AMD (Ankh-Morpork Dollar)</option>
+        <option>FPB (Flanian Pobble Bead)</option>
+        <option>VTH (Vampire Teeth)</option>
+      </select>
+      <button type="submit" class="button-success button-lg">Convert</button>
+    </form>
+    <div class="total-contain">
+    </div>
+  </div>
+</body>
+</html>
